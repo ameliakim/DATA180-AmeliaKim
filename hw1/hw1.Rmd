@@ -1,11 +1,11 @@
 ---
 title: "HW 1"
 subtitle: "Data 180, Professor Kennedy"
-author: 
+author:
   name: "Amelia Kim"
-  email: "XXXX@dickinson.edu"
+  email: "kimam@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
-output: 
+output:
   html_document
 ---
 Make sure that you have accepted the hw invitation link, and working with your clone repository.
@@ -16,10 +16,6 @@ Make sure that you have accepted the hw invitation link, and working with your c
 ```{r}
 # Your code goes here
 
-Person = c("Alice", "Bob", "Charlie", "Denise", "Erin", "Frank", "Gisele", "Harry")
-Preference = c("Twitter", "Facebook", "Twitter", "Instagram", "Facebook", "Twitter", "Twitter", "Instagram")
-
-my_df
 ```
 Make sure to insert a chunk for each (sub)section of the assignment.
 
@@ -42,13 +38,35 @@ a) Store the data below in a data frame object named `my_df`.
 | Gisele | Twitter |
 | Harry | Instagram |
 
+```{r}
+
+Person = c("Alice", "Bob", "Charlie", "Denise", "Erin", "Frank", "Gisele", "Harry")
+Preference = c("Twitter", "Facebook", "Twitter", "Instagram", "Facebook", "Twitter", "Twitter", "Instagram")
+
+my_df <- data.frame(Person, Preference)
+my_df
+```
+
 b) What are the dimensions of `my_df`?
 
+'my_df' has 2 columns ("Person" and "Preference) and 8 rows of observations
+
 c) Write R code that counts the total number of users.
-
+```{r}
+total_users <- nrow(my_df)
+total_users
+```
 d) Write R code that counts the total number of users who prefer Twitter.
-
+```{r}
+twitter_users <- sum(my_df$Preference == "Twitter")
+twitter_users
+```
 e) Write R code that returns what Gisele prefers.
+
+```{r}
+gisele_preference <- my_df$Preference[my_df$Person == "Gisele"]
+gisele_preference
+```
 
 ## Task 2
 a) Create a vector named `my_vec` that includes all integers from 1 to 10 (inclusive).
