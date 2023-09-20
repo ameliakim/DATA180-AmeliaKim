@@ -2,7 +2,7 @@
 title: "HW 1"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
+  name: "Amelia Kim"
   email: "XXXX@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
@@ -15,6 +15,11 @@ Make sure that you have accepted the hw invitation link, and working with your c
 **Reminder:** You can insert R code in your Rmd file as a chunk in the following way:
 ```{r}
 # Your code goes here
+
+Person = c("Alice", "Bob", "Charlie", "Denise", "Erin", "Frank", "Gisele", "Harry")
+Preference = c("Twitter", "Facebook", "Twitter", "Instagram", "Facebook", "Twitter", "Twitter", "Instagram")
+
+my_df
 ```
 Make sure to insert a chunk for each (sub)section of the assignment.
 
