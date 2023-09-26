@@ -51,7 +51,7 @@ type_relative_frequency
 ```
 b) Create a frequency bar graph for the variable `Type`. You can have count on the y axis.
 ```{r}
-barplot(type_frequency, main = "Frequency Bar Graph for 'Type'", xlab = "Type", ylab = "Count", col = c("blue", "cyan", "green", "orange", "pink", "red"), cex.lab = 1.2)
+barplot(type_frequency, main = "Frequency Bar Graph for 'Type'", xlab = "Type", ylab = "Count", col = c("blue", "cyan", "green", "orange", "pink", "red"), cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2)
 ```
 
 *	Your axes should be labeled and legible
@@ -61,7 +61,7 @@ barplot(type_frequency, main = "Frequency Bar Graph for 'Type'", xlab = "Type", 
 
 c) Create a pie chart of the variable `Type`.
 ```{r}
-pie(type_frequency, main = "Pie Chart for 'Type'", cex.lab = 1.2)
+pie(type_frequency, main = "Pie Chart for 'Type'", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2)
 ```
 
 * The plot should include a title using the main argument.
@@ -74,7 +74,7 @@ d) What is the mode of the variable `Type`? Comment.
 ## Task 2 
 a) Create a histogram of the variable `Horsepower`.
 ```{r}
-
+hist(Cars93$Horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", ylab = "Frequency", col = "lightblue", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2)
 ```
 
 *	Your axes should be labeled
@@ -84,7 +84,7 @@ a) Create a histogram of the variable `Horsepower`.
 
 b) Create a second histogram with breaks at 25 HP increments instead of 50.
 ```{r}
-
+hist(Cars93$Horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", ylab = "Frequency", col = "lightgreen", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, breaks = 25)
 ```
 
 * Use the breaks argument to define the classes
@@ -92,9 +92,11 @@ b) Create a second histogram with breaks at 25 HP increments instead of 50.
 
 c) Which histogram more closely follows or rule of thumb for the suggested number of classes? Explain.
 ```{r}
-
+total_data_points <- nrow(Cars93)
+suggested_classes <- sqrt(total_data_points)
+suggested_classes
 ```
-
+#The general rule of them for the suggested number of classes is the square root of the total number of scores in the distribution. The output for 'suggested_classes' indicates that around 9.6 classes is suggested, showing that the second histogram with breaks at 25 horsepower more closely follows the rule of thumb compared to the histogram with breaks at 50 horsepower..
 
 ## Task 3 
 a) What is the type of variable `Passengers`? (Categorical nominal/ordinal or Numerical discrete/continuous?) What happens if we were to make a histogram for `Passengers`? What is the problem with this graph?
