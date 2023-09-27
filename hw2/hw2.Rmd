@@ -100,13 +100,21 @@ suggested_classes
 
 ## Task 3 
 a) What is the type of variable `Passengers`? (Categorical nominal/ordinal or Numerical discrete/continuous?) What happens if we were to make a histogram for `Passengers`? What is the problem with this graph?
-```{r}
 
+#'Passengers' is a numerical discrete variable, consisting of integers to represent how many passengers can fit in car. The problem with making a histogram for 'Passengers' is that the data distribution is skewed. Histograms are usually made with numerical continuous data, where the values don't have gaps in between them.
+```{r}
+passengers_frequency <- table(Cars93$Passengers)
+
+hist(passengers_frequency, main = "Histogram for 'Passengers'", xlab = "Passengers",
+        ylab = "Frequency", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, col = "lightpink")
 ```
 
 b) Correct the problem in part (a) by creating a more appropriate visualization. Make sure to label your axes, place a title, choose a custom color as in the previous graphs. (Bonus: use factor() with levels option to display x axis values with no observations on the plot.)
 ```{r}
+passengers_frequency <- table(Cars93$Passengers)
 
+barplot(passengers_frequency, main = "Histogram for 'Passengers'", xlab = "Passengers",
+        ylab = "Frequency", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, col = "orange")
 ```
 
 ## Task 4 
