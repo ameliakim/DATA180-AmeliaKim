@@ -38,7 +38,8 @@ head(Cars93)
 a) Create a Frequency table and Relative Frequency table (latter uses percentages) for the variable `Type`. Make sure to round all digits to 3 digits.
 ```{r}
 #create frequency and relative frequency table
-type_frequency <- table(Cars93$Type)
+type <- c(Cars93$Type)
+type_frequency <- table(type)
 type_relative_frequency <- prop.table(type_frequency) *100
 
 #round to 3 digits
@@ -51,7 +52,7 @@ type_relative_frequency
 ```
 b) Create a frequency bar graph for the variable `Type`. You can have count on the y axis.
 ```{r}
-barplot(type_frequency, main = "Frequency Bar Graph for 'Type'", xlab = "Type", ylab = "Count", col = c("blue", "cyan", "green", "orange", "pink", "red"), cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2)
+barplot(type_frequency, main = "Frequency Bar Graph for 'Type'", xlab = "Type", ylab = "Count", col = c("purple4", "purple", "blue3", "blue", "green4", "green"), cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2)
 ```
 
 *	Your axes should be labeled and legible
@@ -74,7 +75,8 @@ d) What is the mode of the variable `Type`? Comment.
 ## Task 2 
 a) Create a histogram of the variable `Horsepower`.
 ```{r}
-hist(Cars93$Horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", ylab = "Frequency", col = "lightblue", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2)
+horsepower <- c(Cars93$Horsepower)
+hist(horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", ylab = "Frequency", col = "lightblue", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, breaks = 50)
 ```
 
 *	Your axes should be labeled
@@ -84,7 +86,7 @@ hist(Cars93$Horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", y
 
 b) Create a second histogram with breaks at 25 HP increments instead of 50.
 ```{r}
-hist(Cars93$Horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", ylab = "Frequency", col = "lightgreen", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, breaks = 25)
+hist(horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", ylab = "Frequency", col = "lightgreen", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, breaks = 25)
 ```
 
 * Use the breaks argument to define the classes
@@ -122,23 +124,22 @@ barplot(passengers_frequency, main = "Histogram for 'Passengers'", xlab = "Passe
 ## Task 4 
 a) Make a histogram of the variable `Length` (the default breaks are fine). Other aspects of the plot should be as in part (a) in Task 2.
 ```{r}
-length_cars <- c(Cars93$Length)
-length_frequency <- table(length_cars)
 
-hist(length_frequency, main = "Histogram for 'Length'", xlab = "Length", ylab = "Frequency", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2,, col = "purple")
+length <- c(Cars93$Length)
+hist(length, main = "Histogram for 'Length'", xlab = "Length", ylab = "Frequency", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, col = "purple", labels = TRUE, )
 
 ```
 
 b) What is the shape of the distribution?
 
-#The shape of the distribution is skewed right.
+#The shape of the distribution is symmetrical (bell shaped).
 
 c) Find the mean and median of the variable `Length.` Do these answers meet your expectations from part (b)?
 
-#The mean is greater than the median of the variable 'Length'. This indicates that the data is skewed right, which agrees with my answer from part (b).
+#The mean is about equal to the median of the variable 'Length'. This indicates that the data is symmetrical, which agrees with my answer from part (b).
 ```{r}
-length_mean <- mean(Cars93$Length)
-length_median <- median(Cars93$Length)
+length_mean <- mean(length)
+length_median <- median(length)
 
 length_mean
 length_median
