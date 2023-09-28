@@ -103,7 +103,8 @@ a) What is the type of variable `Passengers`? (Categorical nominal/ordinal or Nu
 
 #'Passengers' is a numerical discrete variable, consisting of integers to represent how many passengers can fit in car. The problem with making a histogram for 'Passengers' is that the data distribution is skewed. Histograms are usually made with numerical continuous data, where the values don't have gaps in between them.
 ```{r}
-passengers_frequency <- table(Cars93$Passengers)
+passengers <- c(Cars93$Passengers)
+passengers_frequency <- table(passengers)
 
 hist(passengers_frequency, main = "Histogram for 'Passengers'", xlab = "Passengers",
         ylab = "Frequency", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, col = "lightpink")
@@ -111,7 +112,8 @@ hist(passengers_frequency, main = "Histogram for 'Passengers'", xlab = "Passenge
 
 b) Correct the problem in part (a) by creating a more appropriate visualization. Make sure to label your axes, place a title, choose a custom color as in the previous graphs. (Bonus: use factor() with levels option to display x axis values with no observations on the plot.)
 ```{r}
-passengers_frequency <- table(Cars93$Passengers)
+passengers <- c(Cars93$Passengers)
+passengers_frequency <- table(factor(passengers, levels = c("2","3","4","5", "6", "7","8")))
 
 barplot(passengers_frequency, main = "Histogram for 'Passengers'", xlab = "Passengers",
         ylab = "Frequency", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, col = "orange")
@@ -120,15 +122,26 @@ barplot(passengers_frequency, main = "Histogram for 'Passengers'", xlab = "Passe
 ## Task 4 
 a) Make a histogram of the variable `Length` (the default breaks are fine). Other aspects of the plot should be as in part (a) in Task 2.
 ```{r}
+length_cars <- c(Cars93$Length)
+length_frequency <- table(length_cars)
+
+hist(length_frequency, main = "Histogram for 'Length'", xlab = "Length", ylab = "Frequency", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2,, col = "purple")
 
 ```
 
 b) What is the shape of the distribution?
 
+#The shape of the distribution is skewed right.
 
 c) Find the mean and median of the variable `Length.` Do these answers meet your expectations from part (b)?
-```{r}
 
+#The mean is greater than the median of the variable 'Length'. This indicates that the data is skewed right, which agrees with my answer from part (b).
+```{r}
+length_mean <- mean(Cars93$Length)
+length_median <- median(Cars93$Length)
+
+length_mean
+length_median
 ```
 
 You are done! 🏁 Don't forget to commit and push your .Rmd file to your Github repository before the due date.
