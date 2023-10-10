@@ -72,7 +72,8 @@ Create a barplot showing count of cars by `AirBags` using ggplot2.
 * Add a title, subtitle, x axis label, y axis label, and a caption using title, subtitle, caption options inside `+ labs()`.
 
 ```{r}
-
+ggplot(data = Cars93, aes(x = AirBags, fill = AirBags)) +
+  geom_bar() + labs(title = "Count of Cars by AirBags", subtitle = "from ggplot", x = "Airbags", y = "Count",caption = "Task 4")
 ```
 
 ## Task 5
@@ -83,7 +84,8 @@ Recreate the barplot in Task 4 for different car `Origin`, such that you create 
 * in `geom_bar(), use `position='dodge'` to have the barplots side by side.
 
 ```{r}
-
+ggplot(data = Cars93, aes(x = Origin, fill = AirBags)) +
+  geom_bar(position = 'dodge') + labs(title = "Count of Cars by AirBags and Origin", subtitle = "from ggplot", x = "Origin", y = "Count",caption = "Task 5")
 ```
 
 # Maps
