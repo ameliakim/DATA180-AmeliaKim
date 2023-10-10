@@ -40,7 +40,8 @@ Create a simple scatterplot using ggplot2 where x axis shows `EngineSize`, y axi
 
  
 ```{r}
-
+ggplot(Cars93, aes(x = EngineSize, y = MPG.city)) + 
+  geom_point(color = "blue", size = 2) + xlim(0,max(Cars93$EngineSize)+1) + ylim(0,max(Cars93$MPG.city)+1) + labs(title = "Scatterplot of Engine Size vs MPG City", subtitle = "from ggplot2", x = "Engine Size", y = "MPG City", caption = "Task 1")
 ```
 
 ## Task 2
@@ -48,7 +49,8 @@ Recreate the scatterplot in Task 1. Add the following functionality:
 
 * Use a different color for each car `Type`.
 ```{r}
-
+ggplot(Cars93, aes(x = EngineSize, y = MPG.city, color = Type)) +
+  geom_point(size = 2) + xlim(0,max(Cars93$EngineSize)+1) + ylim(0,max(Cars93$MPG.city)+1) + labs(title = "Scatterplot of Engine Size vs MPG City", subtitle = "from ggplot2", x = "Engine Size", y = "MPG City", caption = "Task 2")
 ```
 
 ## Task 3
@@ -58,7 +60,8 @@ Recreate the scatterplot in Task 2. Add the following functionality:
 * Make the curve line red, and dashed. (Hint linetype is the option you can use to set line style as 'dashed')
 
 ```{r}
-
+ggplot(Cars93, aes(x = EngineSize, y = MPG.city, color = Type)) +
+  geom_point(size = 2) + geom_smooth(method = "lm", se = FALSE, linetype = "dashed", color = "red") + xlim(0, max(Cars93$EngineSize) + 1) + ylim(0, max(Cars93$MPG.city) + 5) + labs(title = "Scatterplot of Engine Size vs MPG City", subtitle = "from ggplot", x = "Engine Size", y = "MPG City",caption = "Task 3")
 ```
 
 ## Task 4
