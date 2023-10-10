@@ -8,7 +8,7 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`' # no need to change date since this 
 output: 
   html_document
 ---
-
+18/20. Good job Amelia. 
 Make sure that you have accepted the hw invitation link, and working with your clone repository.
 
 **Due date:** September 28 beginning of class.
@@ -87,6 +87,8 @@ hist(horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", ylab = "
 b) Create a second histogram with breaks at 25 HP increments instead of 50.
 ```{r}
 hist(horsepower, main = "Histogram of Horsepower", xlab = "Horsepower", ylab = "Frequency", col = "lightgreen", cex.lab = 1.2, cex.axis = 1.2, cex.main = 1.2, breaks = 25)
+
+## The width of the classes should be 25. Not 25 bins in total (-2)
 ```
 
 * Use the breaks argument to define the classes
