@@ -158,7 +158,7 @@ library(mapview)
 Create an interactive map of Australia using `mapview()`
 
 ```{r}
-
+mapview(au_states)
 ```
 
 ## Task 6
@@ -172,7 +172,10 @@ Now add the new spatial capitals object via + (that is, you can use the followin
 * You can use the option `col.regions='red'` to make capitals appear in color red, and `legend=F` in second `mapview()` to remove the uninformative second set of legend. 
 
 ```{r}
+au_capitals_sf <- st_as_sf(au_capitals, coords = c("lon", "lat"), crs = st_crs(3112))
 
+mapview(au_states) +
+  mapview(au_capitals_sf, col.regions = 'red', legend = FALSE)
 ```
 
 
