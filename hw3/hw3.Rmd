@@ -8,6 +8,7 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`' # no need to change date since this 
 output: 
   html_document
 ---
+18/20. Good job.
 
 Make sure that you have accepted the hw invitation link, and working with your clone repository.
 
@@ -62,6 +63,8 @@ Recreate the scatterplot in Task 2. Add the following functionality:
 ```{r}
 ggplot(Cars93, aes(x = EngineSize, y = MPG.city, color = Type)) +
   geom_point(size = 2) + geom_smooth(method = "lm", se = FALSE, linetype = "dashed", color = "red") + xlim(0, max(Cars93$EngineSize) + 1) + ylim(0, max(Cars93$MPG.city) + 5) + labs(title = "Scatterplot of Engine Size vs MPG City", subtitle = "from ggplot", x = "Engine Size", y = "MPG City",caption = "Task 3")
+
+# Fit and overlay a smooth cure. (-2)
 ```
 
 ## Task 4
