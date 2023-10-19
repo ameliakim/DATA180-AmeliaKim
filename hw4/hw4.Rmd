@@ -2,8 +2,8 @@
 title: "HW 4: Dplyr"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
+  name: "Amelia Kim"
+  email: "kimam@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
@@ -42,19 +42,30 @@ Here are the variables included and their meanings:
 For the entire data, display the summary statistics (mean, median, mode, etc.) using the dplyr function `summary()` via pipe.
 
 ```{r}
-
+summary(records)
 ```
 # Question 2
 Return the count of cases where a record was broken in more than a year (365 days).
 
 ```{r}
+broken_records <- records %>%
+  filter(record_duration > 365) %>%
+  nrow()
 
+broken_records
 ```
 # Question 3
 Return name of the player, name of the track, record date, and record duration for the record that took the longest time to be broken.
 
 ```{r}
+longest_record <- records %>%
+  arrange(desc(record_duration)) %>%
+  slice(1)
 
+result <- longest_record %>%
+  select(player, track, date, record_duration)
+
+result
 ```
 
 # Question 4
