@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-10-23" />
+<meta name="date" content="2023-10-24" />
 
 <title>HW 4: Dplyr</title>
 
@@ -354,7 +354,7 @@ display: none;
 <h4 class="author">Amelia Kim</h4>
 <a class="author_email" href="mailto:#"><a href="mailto:kimam@dickinson.edu" class="email">kimam@dickinson.edu</a></a>
 </address>
-<h4 class="date">October 23, 2023</h4>
+<h4 class="date">October 24, 2023</h4>
 
 </div>
 
@@ -541,11 +541,6 @@ fig.width=10} which I already did for you below,</em></p>
 <pre class="r"><code>library(dplyr)
 library(ggplot2)
 
-average_by_year &lt;- records %&gt;%
-  mutate(year = as.integer(substr(date, 1, 4))) %&gt;%
-  group_by(year) %&gt;%
-  summarize(Avg_Record_Time = mean(time, na.rm = TRUE))
-
 ggplot(average_by_year, aes(year, Avg_Record_Time)) +
   geom_bar(stat = &#39;identity&#39;) +
   labs(x = &quot;Year&quot;, y = &quot;Mean Record Time&quot;) +
@@ -566,7 +561,7 @@ dplyr has already pulled <code>records</code> df at the beginning of the
 code (making it unnecessary to type it twice!)</p>
 <p>Note: Set <code>alpha=.5</code> for transparency.</p>
 <pre class="r"><code>records %&gt;%
-  ggplot(aes(x = time, fill = type)) +
+  ggplot(.,aes(x = time, fill = type)) +
   geom_histogram(alpha = 0.5, position = &quot;identity&quot;, bins = 30) +
   labs(x = &quot;Record Time&quot;, y = &quot;Frequency&quot;) +
   ggtitle(&quot;Distribution of Record Times by Type of Track&quot;)</code></pre>
