@@ -8,7 +8,7 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
 ---
-
+18/20. Good job. 
 **Due date:** October 26 beginning of class.
 
 Let's get some practice with **dplyr**! For this assignment, you will work with Mario Kart data! This data is made available as part of Tidy Tuesday. A codebook is available at https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-05-25.
@@ -116,6 +116,7 @@ ggplot(average_by_year, aes(year, Avg_Record_Time)) +
   geom_bar(stat = 'identity') +
   labs(x = "Year", y = "Mean Record Time") +
   ggtitle("Trend in Mean Record Time by Year")
+# Do you notice a trend across years? Are the record times getting faster, slower, or no clear pattern in time? (-2)
 ```
 
 # Question 8
