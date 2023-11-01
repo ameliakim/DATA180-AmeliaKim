@@ -2,8 +2,8 @@
 title: "HW 5"
 subtitle: "Data 180, Professor Kennedy"
 author: 
-  name: "Your Name"
-  email: "XXXX@dickinson.edu"
+  name: "Amelia Kim"
+  email: "kimam@dickinson.edu"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
@@ -21,9 +21,23 @@ print(X)
 
 a) Find the Euclidean distance between the first and second objects. Round the answer to have two decimal points. 
 
+sqrt((-1-0)^2 + (-2-0)^2 + (4+2)^2 + (2-2)^2)
+sqrt(1+4+36+0)
+sqrt(41)
+= 6.40
+
 b) Find the Manhattan distance between the first and third objects. Round the answer to have two decimal points.
 
+|-1-2| + |-2+1| + |4+1| + |2-3|
+= 3 + 1 + 5 + 1
+= 10
+
 c) Find the Minkowski distance ($\ro$ = 3) between the second and third objects. Round the answer to have two decimal points.  
+
+(|0-2|^3 + |0+1|^3 + |-2+1|^3 + |2-3|^3)^(1/3)
+= (8 + 1 + 1 + 1)^(1/3)
+= 11^(1/3)
+= 2.22
 
 # Question 2
 a) Use the filter and select commands to choose only vans from the `Cars93` data set. Select the variables (in this order) Model, Price, EngineSize, Horsepower, MPG.highway, and Length. Name this object `Vans93`. Note: Be sure to load the `dplyr` package after loading `MASS` to prevent masking of the select command. How many objects does `Vans93` have? Print the `Vans93` dataframe in your solutions. Note2: If you get any errors with `select()`, try using `dplyr::select()` to avoid conflicts in `dplyr` and `MASS` packages.
@@ -31,8 +45,14 @@ a) Use the filter and select commands to choose only vans from the `Cars93` data
 library(MASS)
 library(dplyr)
 
+Vans93 <- Cars93 %>%
+  filter(Type == "Van") %>%
+  dplyr::select(Model, Price, EngineSize, Horsepower, MPG.highway, Length)
 
+Vans93
 
+n_objects <- nrow(Vans93)
+cat("Number of objects in Vans93:", n_objects, "\n")
 ```
 
 b) Use the `dist` and `as.matrix` functions to find the distance matrix for the vans set using the Euclidean metric. Call this matrix `Vans_Euclidean`. You will need to remove the first column of the `Vans93` dataframe when you pass it into the `dist` function, since the variable `Model` is not an appropriate variable for the cluster variate. You can do this by passing in `Vans93[,-1]` or `Vans93[,2:6]` (or any other way you like), converting it to a matrix and storing it as `Vans_Euclidean`. Next, set the row and column names of `Vans_Euclidean` to the Models of the vans using the rownames and colnames functions, so that it is easier for us to see what object we have in each row/column. Hint: This can be done by typing
@@ -44,14 +64,22 @@ rownames(Vans_Euclidean)<-Vans93[,1]
 
 Finally, round the values in this matrix to the hundredths place (two decimal points). Paste the final version of the matrix `Vans_Euclidean` into your solutions. Which two Vans (give the models) have the shortest distance between them? Which two have the largest distance between them?
 ```{r}
-
+Vans_Euclidean = as.matrix(dist(Vans93[,-1]))
+colnames(Vans_Euclidean)<-Vans93[,1]
+rownames(Vans_Euclidean)<-Vans93[,1]
+Vans_Euclidean = round(Vans_Euclidean, 2)
+Vans_Euclidean
 ```
 
 
 
 c) Repeat the steps in part (b) but use the Manhattan metric and call the object `Vans_Manhattan`.
 ```{r}
-
+Vans_Manhattan = as.matrix(dist(Vans93[,-1], method = "manhattan"))
+colnames(Vans_Manhattan) <- Vans93[, 1]
+rownames(Vans_Manhattan) <- Vans93[, 1]
+Vans_Manhattan = round(Vans_Manhattan, 2)
+Vans_Manhattan
 ```
 
 The vans with the shortest distance between them are the Quest and the MPV (5.0). The vans with the largest distance between them are the Lumina APV and the Eurovan (76.7).
@@ -67,12 +95,15 @@ Find (by hand) the inter-group distance between A = $\{O_1, O_4\}$ and B = $\{O_
 
 a) Nearest-neighbor
 
-
+1
 
 b) Farthest-neighbor
 
+9
 
 c) Average-neighbor
+
+4.1
 
 # Question 4
 Consider the following dendrogram created by a hierarchical clustering of 11 frequently used English words.
@@ -88,7 +119,10 @@ Let's practice hierarchical clustering with the `vertebrate` dataset that is sav
 
 a) First, read in the `vertebrate.csv` file and store it in a dataframe object named `vertebrate`. How many rows does the dataframe have? Print the entire dataset in your solutions.
 ```{r}
+vertebrate <- read.csv('vertebrate.csv')
+num_rows <- nrow(vertebrate)
 
+cat("Number of rows in dataframe:", num_rows, "\n")
 ```
 
 b) Perform two separate clustering analyses of the data using the `hclust` function. Provide the dendrograms for both clustering methods.
@@ -97,14 +131,28 @@ b) Perform two separate clustering analyses of the data using the `hclust` funct
 ```{r}
 Ver_Euclidean<-as.matrix(dist(vertebrate[,-1]))
 
+colnames(Ver_Euclidean) <- vertebrate[, 1]
+rownames(Ver_Euclidean) <- vertebrate[, 1]
+
+dendrogram_euclidean <- hclust(dist(Ver_Euclidean))
+plot(dendrogram_euclidean, lwd = 3, main = "Clustered Vertebrates- Euclidean Metric",
+     sub = "", xlab = "Vertebrates", cex.lab = 1.25, hang = -1)
 ```
 
 (ii)using the Manhattan metric with single linkage and
 ```{r}
+Ver_Manhattan <- as.matrix(dist(vertebrate[, -1], method = "manhattan"))
+colnames(Ver_Manhattan) <- vertebrate[, 1]
+rownames(Ver_Manhattan) <- vertebrate[, 1]
 
+dendrogram_manhattan <- hclust(dist(Ver_Manhattan))
+plot(dendrogram_manhattan, lwd = 3, main = "Clustered Vertebrates - Manhattan Metric",
+     sub = "", xlab = "Vertebrates", cex.lab = 1.25, hang = -1)
 ```
 
 Which method do you prefer?
+
+I prefer the Manhattan method because it is much easier to compute the calculations by hand and it less sensitive and is not easily affected by outliers.
 
 
 In your dendrograms:
@@ -120,8 +168,19 @@ In your dendrograms:
 Bonus: (not required) generate the same dendrogram using the `ggdendro` package.
 
 ```{r}
+vertebrate <- read.csv('vertebrate.csv')
+Ver_Manhattan <- as.matrix(dist(vertebrate[, -1], method = "manhattan"))
+dendrogram <- hclust(dist(Ver_Manhattan))
+library(ggdendro)
+gg_dendrogram <- dendro_data(dendrogram, rotate = TRUE)
 
-
+library(ggplot2)
+ggplot(gg_dendrogram, labels = TRUE) +
+  geom_dendrogram() +
+  theme_minimal() +
+  labs(title = "Clustered vertebrates, Manhattan Metric, Default Linkage",
+       x = "Vertebrates") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
 
