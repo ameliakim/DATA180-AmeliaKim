@@ -50,10 +50,9 @@ Use hierarchical clustering (i.e. `hclust`) to cluster the animals based on the 
 *	Set the frame.plot argument to T to draw a box around the dendrograms
 
 ```{r}
-dist_matrix <- dist(scale(Mammals_Milk))
-
-hclust_result <- hclust(dist_matrix)
-plot(hclust_result, hang = -1, cex = 1.25, sub = "", main = "Mammals Clustered by Std. Milk Composition \n Euclidean Metric, Complete Linkage", xlab = "Mammals", frame.plot = TRUE, lwd = 3)
+hcluster <- hclust(dist(Mammals_Milk_Std, method = "euclidean"))
+             
+plot(hcluster, hang = -1, cex = 1.25, sub = "", main = "Mammals Clustered by Std. Milk Composition \n Euclidean Metric, Complete Linkage", xlab = "Mammals", frame.plot = TRUE, lwd = 3)
 
 ```
 
@@ -63,10 +62,10 @@ For k = 3 and k = 4, perform a k-means clustering of the mammals based on their 
 ```{r}
 set.seed(125)
 library(dplyr)
-MMilk_km_3 <- kmeans(scale(Mammals_Milk), centers = 3, nstart = 100)
-Mammals_Milk$km_3 <- MMilk_km_3$cluster
+MMilk_km_3 <- kmeans(Mammals_Milk_Std, centers = 3, nstart = 100)
+MMilk_km_4 <- kmeans(Mammals_Milk_Std, centers = 4, nstart = 100)
 
-MMilk_km_4 <- kmeans(scale(Mammals_Milk), centers = 4, nstart = 100)
+Mammals_Milk$km_3 <- MMilk_km_3$cluster
 Mammals_Milk$km_4 <- MMilk_km_4$cluster
 
 sorted_table_km_3 <- Mammals_Milk %>% arrange(km_3)
@@ -144,12 +143,12 @@ Create a plot showing how WGSS changes for K = 1 to 8 groups. For each K choice,
 wgss <- numeric(8)
 
 for (k in 1:8) {set.seed(125)
-  km_result <- kmeans(scale(Mammals_Milk), centers = k, nstart = 50)
+  km_result <- kmeans(Mammals_Milk_Std, centers = k, nstart = 50)
   wgss[k] <- km_result$tot.withinss}
 
 plot(1:8, wgss, type = "b", xlab = "Number of Clusters (K)", ylab = "WGSS", main = "WGSS by Number of Clusters")
 
-#The elbow plot suggests 8 clusters. The dendrogram in Question 2 gave me the impression that there were more than 8 clusters.
+#The elbow plot suggests 8 clusters. The dendrogram in Question 2 is more challenging to interpret, so the use of K clustering helped analyze the data and easily identify the number of clusters.
 ```
 
 
