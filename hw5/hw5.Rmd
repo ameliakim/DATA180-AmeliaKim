@@ -8,7 +8,7 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
 ---
-
+17/20. 
 **Due date:** November 2 beginning of class.
 
 # Question 1
@@ -71,7 +71,7 @@ Vans_Euclidean = round(Vans_Euclidean, 2)
 Vans_Euclidean
 ```
 
-
+#  Which two Vans (give the models) have the shortest distance between them? Which two have the largest distance between them? (-2)
 
 c) Repeat the steps in part (b) but use the Manhattan metric and call the object `Vans_Manhattan`.
 ```{r}
@@ -104,6 +104,7 @@ b) Farthest-neighbor
 c) Average-neighbor
 
 4.1
+# How do you arrive at these numbers? (-1)
 
 # Question 4
 Consider the following dendrogram created by a hierarchical clustering of 11 frequently used English words.
@@ -168,19 +169,21 @@ In your dendrograms:
 Bonus: (not required) generate the same dendrogram using the `ggdendro` package.
 
 ```{r}
-vertebrate <- read.csv('vertebrate.csv')
-Ver_Manhattan <- as.matrix(dist(vertebrate[, -1], method = "manhattan"))
-dendrogram <- hclust(dist(Ver_Manhattan))
-library(ggdendro)
-gg_dendrogram <- dendro_data(dendrogram, rotate = TRUE)
-
-library(ggplot2)
-ggplot(gg_dendrogram, labels = TRUE) +
-  geom_dendrogram() +
-  theme_minimal() +
-  labs(title = "Clustered vertebrates, Manhattan Metric, Default Linkage",
-       x = "Vertebrates") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+# vertebrate <- as.data.frame(read.csv ("C:/Users/rodge/Downloads/vertebrate.csv"))
+# Ver_Manhattan <- as.matrix(dist(vertebrate[, -1], method = "manhattan"))
+# dendrogram <- hclust(dist(Ver_Manhattan))
+# library(ggdendro)
+# gg_dendrogram <- dendro_data(dendrogram, rotate = TRUE)
+# 
+# library(ggplot2)
+# ggplot(gg_dendrogram, labels = TRUE) +
+#   geom_dendrogram() +
+#   theme_minimal() +
+#   labs(title = "Clustered vertebrates, Manhattan Metric, Default Linkage",
+#        x = "Vertebrates") +
+#   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+# 
+# #Code breaking. 
 ```
 
 
