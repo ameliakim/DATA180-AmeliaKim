@@ -8,7 +8,7 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output: 
   html_document
 ---
-
+18/20. Good job. 
 ```{r global options, include = FALSE}
 knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ```
@@ -148,7 +148,7 @@ for (k in 1:8) {set.seed(125)
 
 plot(1:8, wgss, type = "b", xlab = "Number of Clusters (K)", ylab = "WGSS", main = "WGSS by Number of Clusters")
 
-#The elbow plot suggests 8 clusters. The dendrogram in Question 2 is more challenging to interpret, so the use of K clustering helped analyze the data and easily identify the number of clusters.
+#The elbow plot suggests 8 clusters. The dendrogram in Question 2 is more challenging to interpret, so the use of K clustering helped analyze the data and easily identify the number of clusters. (-2)
 ```
 
 
