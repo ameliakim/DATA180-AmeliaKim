@@ -115,13 +115,13 @@ credit_age_stats
 c) Plot a histogram of the variables in b above. Do the shapes of the histograms confirm the skewness you found in b?
 ```{r}
 
-hist(loan$num_card_inq_24_month, main = "Number of credit card inquiries in last 24 months", col = "skyblue", xlab = "Number of Card Inquiries")
+hist(loan$num_card_inq_24_month, main = "Histogram for the Number of Credit Card Inquiries in Last 24 Months", col = "skyblue", xlab = "Number of Card Inquiries")
 #Yes, the column for the number of credit card inquiries in last 24 months ('num_card_inq_24_month') is right skewed.
 
-hist(loan$tot_amount_currently_past_due, main = "Total amount past due currently for all credit accounts", col = "salmon", xlab = "Total Amount Currently Past Due")
+hist(loan$tot_amount_currently_past_due, main = "Histogram for the Total Amount Past Due", col = "salmon", xlab = "Total Amount Currently Past Due")
 #Yes, the column for the total amount past due currently for all credit accounts ('tot_amount_currently_past_due') is right skewed.
 
-hist(loan$credit_age, main = "Age in months of first credit product obtained by the applicant", col = "lightgreen", xlab = "Credit Age")
+hist(loan$credit_age, main = "Histogram for the Age in Months of First Credit Product", col = "lightgreen", xlab = "Credit Age")
 #Yes, the column for the age in months of first credit product obtained by the applicant ('credit_age') is right skewed.
 ```
 
@@ -140,7 +140,7 @@ def_ind_col <- loan$Def_ind
 
 ggplot(loan, aes(x = factor(def_ind_col))) +
   geom_bar(fill = "orange") +
-  labs(title = "Indicator of Default", x = "Indictor of Default", y = "Frequency") +
+  labs(title = "Bar Graph for Indicator of Default", x = "Indictor of Default", y = "Frequency") +
   theme_minimal()
 
 #The bar graph for the indicator of default column ('def_ind) in is right skewed. The mode is 0, the median is 0, and the mean is 0.1.
@@ -152,7 +152,7 @@ rep_edu_col <- loan$rep_education
 
 ggplot(loan, aes(x = factor(rep_edu_col))) +
   geom_bar(fill = "skyblue") +
-  labs(title = "Education Level", subtitle = "(self-reported by applicant and not verified)", x = "Education Level", y = "Number of People") +
+  labs(title = "Bar Graph for Education Level", subtitle = "(self-reported by applicant and not verified)", x = "Education Level", y = "Number of People") +
   theme_minimal()
 
 #The bar graph for education level column ("rep_education") is right skewed.
@@ -160,7 +160,7 @@ ggplot(loan, aes(x = factor(rep_edu_col))) +
 
 c) Plot a histogram of the “rep_income” variable.
 ```{r}
-hist(loan$rep_income, main = "Annual Income", subtitle = "(self-reported by applicant and not
+hist(loan$rep_income, main = "Histogram for Annual Income", subtitle = "(self-reported by applicant and not
 verified)", col = "pink", xlab = "Annual Income")
 ```
 
@@ -169,7 +169,7 @@ d) Plot a boxplot of the “tot_balance” variable. Using the box plot report t
 tot_balance_col <- loan$tot_balance
 summary(tot_balance_col)
 
-boxplot(tot_balance_col, main = "Total Available Balance", ylab = "Total Balance")
+boxplot(tot_balance_col, main = "Boxplot for Total Available Balance", ylab = "Total Balance")
 
 #Yes, the points on the plot outside of the lower bound and upper bound of the data set are outliers.
 ```
