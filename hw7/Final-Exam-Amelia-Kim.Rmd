@@ -1,0 +1,175 @@
+---
+title: "Final Exam - Amelia Kim"
+subtitle: "Data 180, Professor Kennedy"
+author: 
+  name: "Amelia Kim"
+  email: "kimam@dickinson.edu"
+date: "December 15, 2023"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r echo=FALSE}
+# Custom options for knitting
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE, 
+  fig.align = "center",
+  cache = FALSE
+) 
+```
+
+
+```{r}
+loan<-read.csv("~/Desktop/Data-180-AmeliaKim/Untitled/DATA180-AmeliaKim/data/loan_default_data_set.csv",header=T)
+```
+
+#1 Data Wrangling
+
+a) What is the dimension (shape) of the dataset?  How many rows and columns does the data set have?
+```{r}
+loan_rows <- nrow(loan)
+loan_columns <- ncol(loan)
+loan_rows
+loan_columns
+
+#There are 20,000 rows and 21 columns in the dataset.
+```
+
+b) Report the column names of the data set.
+```{r}
+col_names <- colnames(loan)
+col_names
+```
+
+c)Which types of data are there in the dataset? Numeric, categorical, ordinal?
+```{r}
+column_names <- colnames(loan)
+for (column_name in column_names) {
+  column_type <- class(loan[[column_name]])
+  cat("Column:", column_name, "\t Data Type:", column_type, "\n")
+}
+#The data has numeric, integer, and character data. The data is predominantly numerical but two columns contain ordinal data and one column contains categorical data.
+```
+
+d)Which columns contain missing values and how much (what percent) of those columns are missing?
+```{r}
+missing_values <- colSums(is.na(loan))
+percentage_missing <- (missing_values / nrow(loan)) * 100
+missing_data_summary <- data.frame(
+  Column = names(percentage_missing),
+  Missing_Values = missing_values,
+  Percentage_Missing = percentage_missing
+)
+
+missing_data_summary
+
+#The column for percentage of open accounts with over 50% utilization ('pct_card_over_50_uti') is missing 9.79% of values and the column for annual income (('self-reported by applicant and not verified) ('rep_income') is missing 7.795% of values.
+```
+
+e) How do you think we should deal with missing values? 
+
+#Since only the column for percentage of open accounts with over 50% utilization ('pct_card_over_50_uti') and annual income ('rep_income') are missing values, we could deal with missing values by deleting all of the rows that contain missing values.
+
+f) With this data, would you fit a supervised or an unsupervised learning model? Why?
+
+#For this dataset, a supervised learning model would be most fitting because in each column, there is a specific outcome that is being recorded.
+
+g) For part 2 and 3 drop all rows of the data that contain missing values. Print the dimensions of the resulting data set that has no missing values.
+```{r}
+loan_nomissing <- na.omit(loan)
+nrow(loan_nomissing)
+ncol(loan_nomissing)
+
+#There are 16,653 rows and 21 columns in the resulting data set that has no missing values.
+```
+
+
+#2 Data summary statistics
+
+a) Find the summary statistics of the data set. You can use the summary function from dplyr.
+```{r}
+library(dplyr)
+
+loan_stats <- summary(loan)
+loan_stats
+```
+
+b) Based on the mean, mode, and median, is “num_card_inq_24_month” bell shaped, left, right skewed? How about “tot_amount_currently_past_due”? “credit_age”?
+```{r}
+carding24_stats <- summary(loan$num_card_inq_24_month)
+carding24_stats
+#The column for the number of credit card inquiries in last 24 months ('num_card_inq_24_month') is right skewed because the mean (1.053) is greater than the median(0).
+
+pastdue_stats <- summary(loan$tot_amount_currently_past_due)
+pastdue_stats
+#The column for total amount past due currently for all credit accounts ('tot_amount_currently_past_due') is right skewed because the mean (352.5) is greater than the median(0).
+
+credit_age_stats <- summary(loan$credit_age)
+credit_age_stats
+#The column for age in months of first credit product obtained by the applicant ('credit_age') is likely bell shaped because the mean (280.7) and the median (280) are very close and almost equal.
+```
+
+c) Plot a histogram of the variables in b above. Do the shapes of the histograms confirm the skewness you found in b?
+```{r}
+
+hist(loan$num_card_inq_24_month, main = "Histogram for the Number of Credit Card Inquiries in Last 24 Months", col = "skyblue", xlab = "Number of Card Inquiries")
+#Yes, the column for the number of credit card inquiries in last 24 months ('num_card_inq_24_month') is right skewed.
+
+hist(loan$tot_amount_currently_past_due, main = "Histogram for the Total Amount Past Due", col = "salmon", xlab = "Total Amount Currently Past Due")
+#Yes, the column for the total amount past due currently for all credit accounts ('tot_amount_currently_past_due') is right skewed.
+
+hist(loan$credit_age, main = "Histogram for the Age in Months of First Credit Product", col = "lightgreen", xlab = "Credit Age")
+#Yes, the column for the age in months of first credit product obtained by the applicant ('credit_age') is right skewed.
+```
+
+d) How would your convert the “rep_education” column into numerical data? Name two ways. 
+
+#Two ways you could convert the education level column into numerical data is by using the as.numeric() function or the factor() function 
+
+
+#3 Data visualization
+
+a) Plot a bar graph for the “Def_Ind” column and describe it.
+```{r}
+library(ggplot2)
+
+def_ind_col <- loan$Def_ind
+
+ggplot(loan, aes(x = factor(def_ind_col))) +
+  geom_bar(fill = "orange") +
+  labs(title = "Bar Graph for Indicator of Default", x = "Indictor of Default", y = "Frequency") +
+  theme_minimal()
+
+#The bar graph for the indicator of default column ('def_ind) in is right skewed. The mode is 0, the median is 0, and the mean is 0.1.
+```
+
+b) Plot a bar graph for the “rep_education" column and describe it. 
+```{r}
+rep_edu_col <- loan$rep_education
+
+ggplot(loan, aes(x = factor(rep_edu_col))) +
+  geom_bar(fill = "skyblue") +
+  labs(title = "Bar Graph for Education Level", subtitle = "(self-reported by applicant and not verified)", x = "Education Level", y = "Number of People") +
+  theme_minimal()
+
+#The bar graph for education level column ("rep_education") is right skewed.
+```
+
+c) Plot a histogram of the “rep_income” variable.
+```{r}
+hist(loan$rep_income, main = "Histogram for Annual Income", subtitle = "(self-reported by applicant and not
+verified)", col = "pink", xlab = "Annual Income")
+```
+
+d) Plot a boxplot of the “tot_balance” variable. Using the box plot report the five number summary of the variable? Are there any outliers for this variable? 
+```{r}
+tot_balance_col <- loan$tot_balance
+summary(tot_balance_col)
+
+boxplot(tot_balance_col, main = "Boxplot for Total Available Balance", ylab = "Total Balance")
+
+#Yes, the points on the plot outside of the lower bound and upper bound of the data set are outliers.
+```
