@@ -9,7 +9,7 @@ output: html_document
 editor_options: 
   chunk_output_type: console
 ---
-
+36/40
 ```{r echo=FALSE}
 # Custom options for knitting
 knitr::opts_chunk$set(
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 
 ```{r}
-loan<-read.csv("~/Desktop/Data-180-AmeliaKim/Untitled/DATA180-AmeliaKim/data/loan_default_data_set.csv",header=T)
+loan<-read.csv("loan_default_data_set.csv",header=T)
 ```
 
 #1 Data Wrangling
@@ -129,6 +129,8 @@ d) How would your convert the “rep_education” column into numerical data? Na
 
 #Two ways you could convert the education level column into numerical data is by using the as.numeric() function or the factor() function 
 
+# by creating dummy variables or by assigning each category a digit (-2)
+
 
 #3 Data visualization
 
@@ -144,6 +146,8 @@ ggplot(loan, aes(x = factor(def_ind_col))) +
   theme_minimal()
 
 #The bar graph for the indicator of default column ('def_ind) in is right skewed. The mode is 0, the median is 0, and the mean is 0.1.
+
+# Bar graphs do not communicate skewness (-1)
 ```
 
 b) Plot a bar graph for the “rep_education" column and describe it. 
@@ -156,6 +160,7 @@ ggplot(loan, aes(x = factor(rep_edu_col))) +
   theme_minimal()
 
 #The bar graph for education level column ("rep_education") is right skewed.
+# Bar graphs do not communicate skewness (-1)
 ```
 
 c) Plot a histogram of the “rep_income” variable.
